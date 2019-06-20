@@ -1,4 +1,4 @@
-package com.jevely.tellu
+package com.jevely.tellu.util
 
 import android.util.Log
 

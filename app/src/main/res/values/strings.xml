@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TellU</string>
+
+    <string name="main_bt_add">set reminder</string>
+    <string name="main_bt_del">delete reminder</string>
+    <string name="setting_email">jevely666@gmail.com</string>
 </resources>

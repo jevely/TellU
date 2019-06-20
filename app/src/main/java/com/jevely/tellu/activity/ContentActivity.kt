@@ -1,7 +1,8 @@
-package com.jevely.tellu
+package com.jevely.tellu.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.jevely.tellu.R
 
 class ContentActivity : AppCompatActivity() {
 
