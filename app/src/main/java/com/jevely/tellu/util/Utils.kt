@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Point
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
+import android.os.Environment
 import com.jevely.tellu.TellUApplication
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -48,8 +49,10 @@ fun getVersion(): String {
     }
 }
 
-val saveAddress = File.separator + "wallpaper" + File.separator + "real.jpg"
-val saveFloadAddress = File.separator + "wallpaper" + File.separator
+val saveAddress =
+    Environment.getExternalStorageDirectory().absolutePath + File.separator + "wallpaper" + File.separator + "real.jpg"
+val saveFloadAddress =
+    Environment.getExternalStorageDirectory().absolutePath + File.separator + "wallpaper" + File.separator
 
 //图片保存到本地
 fun saveWallpaperToLocal(bitmap: Bitmap) {

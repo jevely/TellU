@@ -30,28 +30,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.main_add -> {
-//                startActivity(Intent(this, ContentActivity::class.java))
-                Thread(Thr()).start()
+                startActivity(Intent(this, ContentActivity::class.java))
             }
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        ShareTool.destroy()
-    }
-
-    private class Thr : Runnable {
-        override fun run() {
-//            com.jevely.tellu.util.setWallpaper()
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                Logger.d("设置壁纸")
-//                setWallpaper7()
-//                Logger.d("设置壁纸完成")
-//            }
-            Logger.d("设置壁纸")
-            setLockWallpaper()
-            Logger.d("设置壁纸完成")
         }
     }
 
