@@ -1,15 +1,14 @@
 package com.jevely.tellu.activity
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.jevely.tellu.BaseActivity
 import com.jevely.tellu.R
-import com.jevely.tellu.util.Logger
-import com.jevely.tellu.util.ShareTool
-import com.jevely.tellu.util.getVersion
+import com.jevely.tellu.util.*
 
 class MainActivity : BaseActivity(), View.OnClickListener {
 
@@ -19,8 +18,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
-
-        ShareTool.getInstance().getString("ljw")?.let { Logger.d(it) }
     }
 
     private fun init() {
@@ -32,13 +29,30 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.main_add -> startActivity(Intent(this, ContentActivity::class.java))
+            R.id.main_add -> {
+//                startActivity(Intent(this, ContentActivity::class.java))
+                Thread(Thr()).start()
+            }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         ShareTool.destroy()
+    }
+
+    private class Thr : Runnable {
+        override fun run() {
+//            com.jevely.tellu.util.setWallpaper()
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                Logger.d("设置壁纸")
+//                setWallpaper7()
+//                Logger.d("设置壁纸完成")
+//            }
+            Logger.d("设置壁纸")
+            setLockWallpaper()
+            Logger.d("设置壁纸完成")
+        }
     }
 
 }
