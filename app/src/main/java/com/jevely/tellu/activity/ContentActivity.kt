@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.jevely.tellu.BaseActivity
 import com.jevely.tellu.R
+import com.jevely.tellu.util.ActivityTool
 import org.w3c.dom.Text
 
 class ContentActivity : BaseActivity(), View.OnClickListener {
@@ -32,6 +33,8 @@ class ContentActivity : BaseActivity(), View.OnClickListener {
         title_back.setOnClickListener(this)
         title_yes.setOnClickListener(this)
         findViewById<TextView>(R.id.title_title).setText(R.string.content_title)
+
+        ActivityTool.getInstance().addActivity(this)
     }
 
     override fun onClick(v: View) {
@@ -48,5 +51,10 @@ class ContentActivity : BaseActivity(), View.OnClickListener {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityTool.getInstance().deleteActivity(this)
     }
 }

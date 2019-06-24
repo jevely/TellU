@@ -1,10 +1,14 @@
 package com.jevely.tellu.activity
 
 import android.os.Bundle
+import android.os.Looper
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import com.jevely.tellu.BaseActivity
 import com.jevely.tellu.R
+import com.jevely.tellu.TellUApplication
+import com.jevely.tellu.util.ActivityTool
 import com.jevely.tellu.util.ShareTool
 import com.jevely.tellu.util.saveWallpaperToLocal
 import com.jevely.tellu.view.WallPaperView
@@ -53,12 +57,14 @@ class WatchActivity : BaseActivity(), View.OnClickListener {
             saveWallpaperToLocal(nomalWallPaper)
             com.jevely.tellu.util.setWallpaper(wallpaper)
             ShareTool.getInstance().putBoolean(ShareTool.WALL_PAPER_SET, true)
+            ActivityTool.getInstance().finishActivity()
             finish()
         }
     }
 
     override fun requestSuccess(requestCode: Int, permission: List<String>) {
         super.requestSuccess(requestCode, permission)
+//        wallpaperview.setBackground()
         Thread(SetWallPaper()).start()
     }
 

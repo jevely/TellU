@@ -2,6 +2,7 @@ package com.jevely.tellu.util
 
 import android.annotation.TargetApi
 import android.app.WallpaperManager
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Point
@@ -153,4 +154,37 @@ fun setLockWallpaper7(bitmap: Bitmap) {
     } catch (e: Exception) {
         e.printStackTrace()
     }
+}
+
+//获取是否存在NavigationBar
+fun checkDeviceHasNavigationBar(context: Context): Boolean {
+    var hasNavigationBar = false
+    val rs = context.resources
+    val id = rs.getIdentifier("config_showNavigationBar", "bool", "android")
+    if (id > 0) {
+        hasNavigationBar = rs.getBoolean(id)
+    }
+    try {
+        val systemPropertiesClass = Class.forName("android.os.SystemProperties")
+        val m = systemPropertiesClass.getMethod("get", String::class.java)
+        val navBarOverride = m.invoke(systemPropertiesClass, "qemu.hw.mainkeys") as String
+        if ("1" == navBarOverride) {
+            hasNavigationBar = false
+        } else if ("0" == navBarOverride) {
+            hasNavigationBar = true
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    return hasNavigationBar
+}
+
+/**
+ * 获取navigationbar高度
+ */
+fun getNavigationbarHeight(context: Context): Int {
+    val resources = context.resources
+    val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+    return resources.getDimensionPixelSize(resourceId)
 }

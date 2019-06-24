@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TellU</string>
 
+    <string name="main_version">Version</string>
     <string name="main_bt_add">Set reminder</string>
     <string name="main_bt_return">Return</string>
     <string name="main_bt_del">delete reminder</string>
@@ -9,4 +10,5 @@
     <string name="content_tip2">Write something</string>
     <string name="content_title">Content</string>
     <string name="content_empty">Please write something</string>
+    <string name="success">Success</string>
 </resources>

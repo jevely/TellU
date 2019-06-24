@@ -6,6 +6,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
+        android:background="@drawable/main_back"
         tools:context=".activity.ContentActivity">
 
     <include layout="@layout/title_layout"/>
@@ -21,7 +22,7 @@
             android:gravity="top|left"
             android:layout_marginTop="8dp"
             android:textSize="@dimen/text_content_nomal"
-            android:textColor="@color/text_cotnent"
+            android:textColor="@color/text_title_small"
             android:hint="@string/content_tip2"
             android:layout_width="match_parent"
             android:layout_marginLeft="16dp"

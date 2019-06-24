@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TellU</string>
+
+    <string name="main_version">版本号</string>
+    <string name="main_bt_add">设置提醒</string>
+    <string name="main_bt_return">还原壁纸</string>
+    <string name="main_bt_del">删除提醒</string>
+    <string name="setting_email">jevely666@gmail.com</string>
+    <string name="content_tip">请填写提醒内容</string>
+    <string name="content_tip2">提醒内容</string>
+    <string name="content_title">提醒内容</string>
+    <string name="content_empty">提醒内容不能为空</string>
+    <string name="success">设置成功</string>
+</resources>
