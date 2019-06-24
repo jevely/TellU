@@ -61,11 +61,11 @@ open class BaseActivity : AppCompatActivity() {
         requestError(requestCode, error)
     }
 
-    fun requestSuccess(requestCode: Int, permission: List<String>) {
+    open fun requestSuccess(requestCode: Int, permission: List<String>) {
 
     }
 
-    fun requestError(requestCode: Int, permission: List<String>) {
+    open fun requestError(requestCode: Int, permission: List<String>) {
 
     }
 }

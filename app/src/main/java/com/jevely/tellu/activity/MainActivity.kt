@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.jevely.tellu.BaseActivity
 import com.jevely.tellu.R
 import com.jevely.tellu.util.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), View.OnClickListener {
 
@@ -25,14 +26,43 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         findViewById<TextView>(R.id.setting_version).setText("Version: ${getVersion()}")
 
         main_add.setOnClickListener(this)
+
+        if (ShareTool.getInstance().getBoolean(ShareTool.WALL_PAPER_SET)) {
+            main_add.text = resources.getString(R.string.main_bt_return)
+        } else {
+            main_add.text = resources.getString(R.string.main_bt_add)
+        }
+
+
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.main_add -> {
-                startActivity(Intent(this, ContentActivity::class.java))
+                if (ShareTool.getInstance().getBoolean(ShareTool.WALL_PAPER_SET)) {
+                    main_add.text = resources.getString(R.string.main_bt_add)
+                    //还原壁纸
+                    Thread(ReturnWallPaper()).start()
+                } else {
+                    startActivity(Intent(this, ContentActivity::class.java))
+                }
             }
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (ShareTool.getInstance().getBoolean(ShareTool.WALL_PAPER_SET)) {
+            main_add.text = resources.getString(R.string.main_bt_return)
+        } else {
+            main_add.text = resources.getString(R.string.main_bt_add)
+        }
+    }
+
+    private class ReturnWallPaper : Runnable {
+        override fun run() {
+            com.jevely.tellu.util.setWallpaper(getWallpaperFromLocal())
+            ShareTool.getInstance().putBoolean(ShareTool.WALL_PAPER_SET, false)
+        }
+    }
 }

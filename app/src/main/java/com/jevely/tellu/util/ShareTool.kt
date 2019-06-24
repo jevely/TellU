@@ -8,6 +8,8 @@ class ShareTool private constructor() {
 
     companion object {
 
+        val WALL_PAPER_SET = "WALL_PAPER_SET"
+
         private var shareTool: ShareTool? = null
 
         @Synchronized
@@ -37,7 +39,7 @@ class ShareTool private constructor() {
         editor.commit()
     }
 
-    fun getString(key: String) : String? {
+    fun getString(key: String): String? {
         return sharedPreferences.getString(key, "")
     }
 
@@ -46,7 +48,7 @@ class ShareTool private constructor() {
         editor.commit()
     }
 
-    fun getBoolean(key: String) : Boolean {
+    fun getBoolean(key: String): Boolean {
         return sharedPreferences.getBoolean(key, false)
     }
 

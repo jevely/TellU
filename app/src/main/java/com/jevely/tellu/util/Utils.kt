@@ -82,7 +82,6 @@ fun getWallpaperFromLocal(): Bitmap {
     return bitmap
 }
 
-
 /**
  * 创建本地图片
  */
@@ -112,7 +111,7 @@ fun deleteFile(file: File): Boolean {
     return file.exists()
 }
 
-//获取本地壁纸
+//获取原有壁纸
 fun getWallpaper(): Bitmap {
     val wallpaperManager = WallpaperManager.getInstance(TellUApplication.getContext())
     val wallpaperDrawable = wallpaperManager.drawable
