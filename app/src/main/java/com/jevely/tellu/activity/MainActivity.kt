@@ -2,16 +2,16 @@ package com.jevely.tellu.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Looper
+import android.os.Handler
+import android.os.Message
 import android.support.constraint.ConstraintLayout
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
-import android.widget.Toast
 import com.jevely.tellu.BaseActivity
 import com.jevely.tellu.R
-import com.jevely.tellu.TellUApplication
 import com.jevely.tellu.util.*
 
 
@@ -19,6 +19,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var main_add: Button
     private lateinit var setting_email: TextView
+    private lateinit var load_fr: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private fun init() {
         setting_email = findViewById(R.id.setting_email)
+        load_fr = findViewById(R.id.load_fr)
 
         main_add = findViewById(R.id.main_add)
         findViewById<TextView>(R.id.setting_version).setText(resources.getString(R.string.main_version) + ": ${getVersion()}")
@@ -39,6 +41,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         } else {
             main_add.text = resources.getString(com.jevely.tellu.R.string.main_bt_add)
         }
+
+        load_fr.visibility = View.GONE
 
         setting_email.getViewTreeObserver().addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
@@ -62,8 +66,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         when (v.id) {
             R.id.main_add -> {
                 if (ShareTool.getInstance().getBoolean(ShareTool.WALL_PAPER_SET)) {
-                    main_add.text = resources.getString(com.jevely.tellu.R.string.main_bt_add)
                     //还原壁纸
+                    load_fr.visibility = View.VISIBLE
                     Thread(ReturnWallPaper()).start()
                 } else {
                     startActivity(Intent(this, ContentActivity::class.java))
@@ -85,14 +89,15 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         override fun run() {
             com.jevely.tellu.util.setWallpaper(getWallpaperFromLocal())
             ShareTool.getInstance().putBoolean(ShareTool.WALL_PAPER_SET, false)
-            Looper.prepare()
-            Toast.makeText(
-                TellUApplication.getContext(),
-                resources.getString(com.jevely.tellu.R.string.success),
-                Toast.LENGTH_SHORT
-            )
-                .show()
-            Looper.loop()
+            handler?.sendEmptyMessage(0)
+        }
+    }
+
+    private var handler: Handler? = object : Handler() {
+        override fun handleMessage(msg: Message?) {
+            super.handleMessage(msg)
+            load_fr.visibility = View.GONE
+            main_add.text = resources.getString(R.string.main_bt_add)
         }
     }
 
@@ -100,5 +105,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         super.onDestroy()
         ShareTool.destroy()
         ActivityTool.destroy()
+        handler = null
     }
 }

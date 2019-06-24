@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TellU</string>
+    <string name="app_name">提醒你</string>
 
     <string name="main_version">版本号</string>
     <string name="main_bt_add">设置提醒</string>
