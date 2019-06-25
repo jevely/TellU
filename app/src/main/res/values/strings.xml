@@ -11,4 +11,8 @@
     <string name="content_title">Content</string>
     <string name="content_empty">Please write something</string>
     <string name="success">Success</string>
+
+    <string name="content_tip_write">You can write something , it will create a wallpaper to remind you</string>
+    <string name="main_tip_click">Please click the button to create a remind wallpaper</string>
+    <string name="main_tip_success">Success , you can go to lunch to see \n If you want to return the wallpaper , just click the button</string>
 </resources>

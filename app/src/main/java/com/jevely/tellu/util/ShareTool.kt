@@ -9,6 +9,9 @@ class ShareTool private constructor() {
     companion object {
 
         val WALL_PAPER_SET = "WALL_PAPER_SET"
+        val USER_TIP_1 = "USER_TIP_1"
+        val USER_TIP_2 = "USER_TIP_2"
+        val USER_TIP_3 = "USER_TIP_3"
 
         private var shareTool: ShareTool? = null
 

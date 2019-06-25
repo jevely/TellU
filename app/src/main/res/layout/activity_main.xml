@@ -12,6 +12,21 @@
             android:background="@drawable/main_back"
             android:layout_height="match_parent">
 
+        <TextView
+                android:id="@+id/main_tip"
+                android:textSize="@dimen/text_content_nomal"
+                android:textColor="@color/text_cotnent"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/main_add"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="60dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"/>
+
         <Button
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
@@ -45,6 +60,7 @@
                 android:textColor="@color/text_cotnent"
                 app:layout_constraintBottom_toTopOf="@+id/setting_email"
                 android:layout_marginBottom="8dp"/>
+
     </android.support.constraint.ConstraintLayout>
 
     <include layout="@layout/loading_layout"/>

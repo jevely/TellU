@@ -11,4 +11,8 @@
     <string name="content_title">提醒内容</string>
     <string name="content_empty">提醒内容不能为空</string>
     <string name="success">设置成功</string>
+
+    <string name="content_tip_write">你可以写一些提醒事项，它会生成壁纸来时刻提醒你</string>
+    <string name="main_tip_click">点击按钮，创建提醒壁纸</string>
+    <string name="main_tip_success">壁纸设置成功，请返回桌面查看 \n 如果想要还原壁纸，请点击按钮</string>
 </resources>

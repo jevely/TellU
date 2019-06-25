@@ -19,6 +19,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var main_add: Button
     private lateinit var setting_email: TextView
+    private lateinit var main_tip: TextView
     private lateinit var load_fr: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private fun init() {
         setting_email = findViewById(R.id.setting_email)
         load_fr = findViewById(R.id.load_fr)
+        main_tip = findViewById(R.id.main_tip)
 
         main_add = findViewById(R.id.main_add)
         findViewById<TextView>(R.id.setting_version).setText(resources.getString(R.string.main_version) + ": ${getVersion()}")
@@ -60,6 +62,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
         })
 
+        if (!ShareTool.getInstance().getBoolean(ShareTool.USER_TIP_1)) {
+            setMainTip(R.string.main_tip_click)
+        }
+
     }
 
     override fun onClick(v: View) {
@@ -70,6 +76,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     load_fr.visibility = View.VISIBLE
                     Thread(ReturnWallPaper()).start()
                 } else {
+                    ShareTool.getInstance().putBoolean(ShareTool.USER_TIP_1, true)
                     startActivity(Intent(this, ContentActivity::class.java))
                 }
             }
@@ -79,6 +86,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
         if (ShareTool.getInstance().getBoolean(ShareTool.WALL_PAPER_SET)) {
+            if (!ShareTool.getInstance().getBoolean(ShareTool.USER_TIP_2)) {
+                ShareTool.getInstance().putBoolean(ShareTool.USER_TIP_2, true)
+                setMainTip(R.string.main_tip_success)
+            }
             main_add.text = resources.getString(com.jevely.tellu.R.string.main_bt_return)
         } else {
             main_add.text = resources.getString(com.jevely.tellu.R.string.main_bt_add)
@@ -99,6 +110,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             load_fr.visibility = View.GONE
             main_add.text = resources.getString(R.string.main_bt_add)
         }
+    }
+
+    fun setMainTip(contentID: Int) {
+        main_tip.text = resources.getText(contentID)
     }
 
     override fun onDestroy() {
