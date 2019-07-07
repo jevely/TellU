@@ -17,4 +17,41 @@
 
     <include layout="@layout/loading_layout"/>
 
+    <LinearLayout
+            android:id="@+id/wallpaper_yes_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/load_back"
+            android:layout_alignParentBottom="true"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+        <Button
+                android:id="@+id/wallpaper_lunch"
+                android:text="@string/set_wallpaper_lunch"
+                android:layout_width="match_parent"
+                android:background="@drawable/button_back"
+                android:textAllCaps="false"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                android:id="@+id/wallpaper_lock"
+                android:text="@string/set_wallpaper_lock"
+                android:textAllCaps="false"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                android:id="@+id/wallpaper_all"
+                android:text="@string/set_wallpaper_all"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_back"
+                android:layout_width="match_parent"
+                android:textAllCaps="false"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
 </RelativeLayout>

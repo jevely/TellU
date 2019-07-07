@@ -127,11 +127,11 @@ fun setWallpaper(bitmap: Bitmap) {
         val wallpaperManager = WallpaperManager.getInstance(TellUApplication.getContext())
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
-            val inputStream = ByteArrayInputStream(baos.toByteArray())
+//            val baos = ByteArrayOutputStream()
+//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+//            val inputStream = ByteArrayInputStream(baos.toByteArray())
 
-            wallpaperManager.setStream(inputStream, null, true, WallpaperManager.FLAG_SYSTEM)
+            wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_SYSTEM)
         } else {
             wallpaperManager.setBitmap(bitmap)
         }
@@ -144,13 +144,27 @@ fun setWallpaper(bitmap: Bitmap) {
 @TargetApi(Build.VERSION_CODES.N)
 fun setLockWallpaper7(bitmap: Bitmap) {
     try {
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
-        val inputStream = ByteArrayInputStream(baos.toByteArray())
+//        val baos = ByteArrayOutputStream()
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+//        val inputStream = ByteArrayInputStream(baos.toByteArray())
 
         val wallpaperManager = WallpaperManager.getInstance(TellUApplication.getContext())
 
-        wallpaperManager.setStream(inputStream, null, true, WallpaperManager.FLAG_LOCK)
+        wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+
+/**
+ * 同时设置桌面，锁屏壁纸
+ */
+@TargetApi(Build.VERSION_CODES.N)
+fun setAllWallpaper(bitmap: Bitmap) {
+    try {
+        val wallpaperManager = WallpaperManager.getInstance(TellUApplication.getContext())
+
+        wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK or WallpaperManager.FLAG_SYSTEM)
     } catch (e: Exception) {
         e.printStackTrace()
     }

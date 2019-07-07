@@ -12,6 +12,7 @@ class ShareTool private constructor() {
         val USER_TIP_1 = "USER_TIP_1"
         val USER_TIP_2 = "USER_TIP_2"
         val USER_TIP_3 = "USER_TIP_3"
+        val SET_WALLPAPER_STATE = "SET_WALLPAPER_STATE"
 
         private var shareTool: ShareTool? = null
 

@@ -10,12 +10,12 @@ android {
         applicationId "com.jevely.tellu"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 10000
-        versionName "1.0.0"
+        versionCode 10001
+        versionName "1.0.1"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

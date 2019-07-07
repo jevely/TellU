@@ -98,7 +98,18 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private inner class ReturnWallPaper : Runnable {
         override fun run() {
-            com.jevely.tellu.util.setWallpaper(getWallpaperFromLocal())
+            when (ShareTool.getInstance().getString(ShareTool.SET_WALLPAPER_STATE)) {
+                "1" -> {
+                    com.jevely.tellu.util.setWallpaper(getWallpaperFromLocal())
+                }
+                "2" -> {
+                    com.jevely.tellu.util.setLockWallpaper7(getWallpaperFromLocal())
+                }
+                "3" -> {
+                    com.jevely.tellu.util.setAllWallpaper(getWallpaperFromLocal())
+                }
+            }
+
             ShareTool.getInstance().putBoolean(ShareTool.WALL_PAPER_SET, false)
             handler?.sendEmptyMessage(0)
         }
